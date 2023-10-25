@@ -1,105 +1,103 @@
 <?php
 
-//Funções sem retorno e sem parâmetro
-function sayHello() {
-    print("Hello!<br>");
+//Função sem parâmetros e sem retorno
+function sayGoodbye() {
+    echo "Tchau!<br>";
 }
 
-sayHello();
+sayGoodbye();
 
-//Funções sem retorno, com parâmetros
+//Função com parâmetros e sem retorno
 function greetings($name, $hobbie = "nada") {
-    print("Bem vindo ".$name."!<br>");
-    print("Você gosta de ".$hobbie."!<br>");
+    echo "Bem vindo ".$name."! ";
+    echo "Você gosta de ".$hobbie."!<br>";
 }
 
-greetings("André", "futebol");
-greetings("Paulo");
+greetings("Jurema");
+greetings("Astolfo", "pescar");
 
-//Funções com retorno e parâmetros
+//Função com parâmetros e retorno
 function bhaskara($a, $b, $c) {
-    $delta = (($b * $b) - (4 * $a * $c));
-    $x1 = ((-$b + sqrt($delta)) / (2 * $a));
-    $x2 = ((-$b - sqrt($delta)) / (2 * $a));
-    return "X' = ".number_format($x1, 3).
-            "<br>X'' = ".number_format($x2, 3).
-            "<br>";
+    $delta = (($b * $b)-(4 * $a * $c));
+    $x1 = (-$b + sqrt($delta)/(2 * $a));
+    $x2 = (-$b - sqrt($delta)/(2 * $a));
+    return "<hr>X' = ".number_format($x1, 3).
+           "<br>X'' = ".number_format($x2, 3).
+           "<hr>";
 }
 
-echo bhaskara(2, 6, 3);
-echo bhaskara(4, 7, 2);
+echo bhaskara(2, 5.8, 3);
+echo bhaskara(2.4, 7.9, 4.2);
 
-//Criando um vetor vazio
-$cars = []; // $cars = array();
+//Criando um array vazio
+$movies = []; // $movies = array();
 
-//Adicionando elementos ao vetor
-$cars[] = "CHEVETTE";
-$cars[] = "CORSEL";
-$cars[] = "BRASILIA";
-$cars[] = "VARIANT";
+//Inserir elementos no array
+$movies[] = "E o vento levou";
+$movies[] = "Vingadores";
+$movies[] = "Harry Potter";
+$movies[] = "O senhor do anéis";
 
-//Depurando uma variável
-var_dump($cars);
+//Analisa variável tecnicamente
+var_dump($movies);
 
-//Função para listar os dados
-function showCars() {
-    echo "<br>//// Lista de carros ////";
-    //Trazendo uma variável global para a função
-    global $cars;
-    foreach($cars as $c) {
-        echo "<br> * ".$c;
+//Mostrando todos os itens da lista
+function showAllMovies() {
+    echo "<br>//// Lista de filmes ////";
+    global $movies;
+    foreach($movies as $m) {
+        echo "<br> - ".$m;
     }
-    echo "<br>//////////////////////////////<br>";
+    echo "<br>///////////////////////<br>";
 }
 
-showCars();
+showAllMovies();
 
-//Função para adicionar um novo elemento
-function addCar($newCar) {
-    global $cars;
-    $cars[] = strtoupper($newCar);
-    echo $newCar." cadastrado com sucesso!<br>";
-    showCars();
+//Função para registrar um novo filme
+function addMovie($newMovie) {
+    global $movies;
+    $movies[] = $newMovie;
+    echo $newMovie . " cadastrado!";
+    showAllMovies();
 }
 
-addCar("Fusca");
+addMovie("Rocky V");
 
-//Função para remover um elemento
-function delCarById($id) {
-    global $cars;
-    //Verificando se o $id existe
-    if($id >= count($cars) || $id < 0) {
-        echo "<br>Nenhum carro foi excluído.<br>";
+//Função para apagar um filme da lista
+function delMovieById($id) {
+    global $movies;
+    //Verificando se o $id existe na lista
+    if($id >= count($movies) || $id < 0) {
+        echo "<br>Não foi possível excluir.<br>";
     } else {
-        //Capturando nome do carro que será excluído
-        $carDeleted = $cars[$id];
-        //Excluindo 1 elemento do $id especificado
-        array_splice($cars, $id, 1);
-        //Apresentando mensagem de sucesso
-        echo "<br>".$carDeleted." excluído!<br>";
-        showCars();
+        //Capturando o nome do filme que será excluído
+        $movieDeleted = $movies[$id];
+        //Excluindo
+        array_splice($movies, $id, 1);
+        echo $movieDeleted . " excluído!<br>";
+        showAllMovies();
     }
 }
 
-delCarById(7);
-delCarById(3);
+delMovieById(6);
+delMovieById(2);
 
-//Função para editar um carro
-function editCarById($id, $newCar) {
-    global $cars;
-    //Verificando se o $id existe
-    if($id >= count($cars) || $id < 0) {
-        echo "<br>Nenhum carro foi editado.<br>";
+//Função para editar um filme da lista
+function editMovieById($id, $newMovie) {
+    global $movies;
+    //Verificando se o $id existe na lista
+    if($id >= count($movies) || $id < 0) {
+        echo "<br>Não foi possível editar.<br>";
     } else {
-        //Capturando nome do carro que será editado
-        $carEdited = $cars[$id];
-        //Editando 1 elemento do $id especificado
-        array_splice($cars, $id, 1, strtoupper($newCar));
-        //Apresentando mensagem de sucesso
-        echo "<br>".$carEdited." editado para ".$newCar."<br>";
-        showCars();
+        //Capturando o nome do filme que será editado
+        $movieEdited = $movies[$id];
+        //Editando
+        array_splice($movies, $id, 1, $newMovie);
+        echo $movieEdited . " editado para " .
+             $newMovie . "<br>";
+        showAllMovies();
     }
 }
 
-editCarById(8, "Gurgel");
-editCarById(3, "Opala");
+editMovieById(0, "O vento trouxe");
+editMovieById(10, "Batman");
