@@ -1,51 +1,52 @@
 <?php
 
-//Importar os códigos de outro arquivo
+//Importando arquivo
 require_once "./data.php";
 
-var_dump($games);
+//Mostrando a lista completa
+var_dump($products);
 
 echo "<hr>";
 
-//Capturar somente as chaves
-foreach($games as $key => $value) {
+//Pegando somente as chaves (índices)
+foreach($products as $key => $value) {
     var_dump($key);
 }
 
 echo "<hr>";
 
-//Capturar somente os valores
-foreach($games as $k => $v) {
-    var_dump($v);
+//Pegando somente os valores
+foreach($products as $k => $v) {
+    var_dump($v["produto"]);
+    echo "<br>";
+    var_dump($v["valor"]);
+    echo "<br>";
+    var_dump($v["estoque"]);
+    echo "<br>";
 }
 
 echo "<hr>";
 
-//Capturar somente uma chave específica
-foreach($games as $a => $b) {
-    var_dump($b["jogo"]);
-}
-
-//Alterando dados
-$games[101]["jogo"] = "God of War II";
-
-echo "<br>" . $games[101]["jogo"];
-
-//Adicionando novo jogo
-$games["106"] = [
-    "jogo" => "Stumble guys",
-    "ano" => "2018",
-    "genero" => "Corrida"
+//Adicionando elemento ao array
+$products[4] = [
+    "produto" => "Memória Ram 16 GB",
+    "valor" => 119.50,
+    "estoque" => 6
 ];
 
-echo "<hr>";
-var_dump($games);
-
-//Excluir um elemento da lista
-array_splice($games, 3, 1);
-//OBS: Ao passar pelo array_splice
-//as chaves são renomeadas para índices
-//que começam do 0 (zero)
+var_dump($products);
 
 echo "<hr>";
-var_dump($games);
+
+//Editando um dado
+$products[1]["estoque"] = 25;
+$products[3]["valor"] = 189.90;
+
+var_dump($products);
+
+echo "<hr>";
+
+//Excluir um elemento
+array_splice($products, 2, 1);
+
+var_dump($products);
