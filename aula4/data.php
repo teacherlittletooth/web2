@@ -1,30 +1,25 @@
 <?php
 
-//Construindo lista associativa
-$games = array(
-    "101" => [
-        "jogo" => "God of War",
-        "ano" => "2005",
-        "genero" => "Ação"
+//Lista de dados: array associativo
+$products = array(
+    0 => [
+        "produto" => "Mouse",
+        "valor" => 29.90,
+        "estoque" => 16
     ],
-    "102" => [
-        "jogo" => "GTA San Andreas",
-        "ano" => "2004",
-        "genero" => "Criminoso"
+    1 => [
+        "produto" => "Teclado",
+        "valor" => 39.90,
+        "estoque" => 14
     ],
-    "103" => [
-        "jogo" => "Minecraft",
-        "ano" => "2009",
-        "genero" => "Sand Box"
+    2 => [
+        "produto" => "Gabinete",
+        "valor" => 89.50,
+        "estoque" => 11
     ],
-    "104" => [
-        "jogo" => "Roblox",
-        "ano" => "2006",
-        "genero" => "Aventura"
-    ],
-    "105" => [
-        "jogo" => "Winning Eleven",
-        "ano" => "2000",
-        "genero" => "Esporte"
+    3 => [
+        "produto" => "SSD",
+        "valor" => 159.25,
+        "estoque" => 3
     ]
 );
