@@ -2,7 +2,7 @@
 
 require_once "./data.php";
 
-if(isset($_GET["search"])) {
+if(isset($_GET["search"]) && $_GET["search"] != "") {
     $search = $_GET["search"];
 } else {
     $search = null;
@@ -10,21 +10,20 @@ if(isset($_GET["search"])) {
 
 //var_dump($search);
 
-//Função para pesquisa no array
-function findGame($find) {
-    global $games;
-    //Passando texto para maiúsculas
-    $findUpperCase = strtoupper($find);
-    $items = 0;
-    foreach($games as $k => $v) {
-        if(strpos(strtoupper($v["jogo"]), $findUpperCase) !== false) {
-            echo "<hr>JOGO: "   . $v["jogo"];
-            echo "<br>ANO: "    . $v["ano"];
-            echo "<br>GÊNERO: " . $v["genero"];
-            $items++;
-        }
+//Função para pesquisar na lista
+function searchProduct($find) {
+    global $products;
+    $findUpper = strtoupper($find);
+    $count = 0;
+    foreach($products as $k => $v) {
+       if(strpos(strtoupper($v["produto"]), $findUpper) !== false) {
+                echo "<hr>PRODUTO: ". $v["produto"];
+                echo "<br>PREÇO: R$ ". number_format($v["valor"], 2);
+                echo "<br>ESTOQUE: ". $v["estoque"];
+                $count++;
+       } 
     }
-    echo "<hr>".$items." jogo(s) encontrado(s).";
+    echo "<hr>".$count." produto(s) encontrado(s).";
 }
 
 ?>
@@ -34,17 +33,17 @@ function findGame($find) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa games</title>
+    <title>Pesquisa produtos</title>
 </head>
 <body>
     <form action="#" method="get">
-        <input type="text" name="search" placeholder="Pesquisa...">
+        <input type="search" name="search" placeholder="Pesquisar produto...">
         <input type="submit" value="Pesquisar">
     </form>
-    <hr>
+    <br>
     <?php
-        //"if/else" de uma linha = operador ternário"
-        ($search != null) ? findGame($search) : "";
-    ?>  
+        //testando se a variável $search é null
+        echo ($search != null) ? searchProduct($search) : "Digite um termo para pesquisa";
+    ?>
 </body>
 </html>
