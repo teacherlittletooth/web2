@@ -44,7 +44,9 @@ if(isset( $_POST["question".$_SESSION["q"]] )) {
     <h3>Pergunta #<?= $_SESSION["q"] + 1 ?></h3>
     <h4><?= $questionList[$_SESSION["q"]] ?></h4>
     <form action="#" method="post">
-        <?php foreach($answerList[$_SESSION["q"]] as $a) : ?>
+        <?php
+            shuffle($answerList[$_SESSION["q"]]);
+            foreach($answerList[$_SESSION["q"]] as $a) : ?>
             <input type="radio"
                    name="question<?= $_SESSION["q"] ?>"
                    id="<?= $a ?>"
