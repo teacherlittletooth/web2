@@ -5,15 +5,22 @@ include "./qaa.php";
 
 session_start();
 
-if(isset( $_GET["question".$_SESSION["q"]] )) {
-    $myAnswer = $_GET["question".$_SESSION["q"]];
+//Algoritmo para verificação da resposta
+if(isset( $_POST["question".$_SESSION["q"]] )) {
+    $myAnswer = $_POST["question".$_SESSION["q"]];
     if( array_search($myAnswer, $answerList[$_SESSION["q"]]) == "correct") {
         echo "<script> alert('Resposta correta!') </script>";
         $_SESSION["points"] += 10;
     } else {
         echo "<script> alert('Resposta errada!') </script>";
     }
+    //Incrementando o índice das perguntas
     $_SESSION["q"] ++;
+
+    //Verificando o fim das perguntas
+    if($_SESSION["q"] > array_key_last($questionList)) {
+        header("Refresh: 0; URL = finish.php");
+    }
 }
 ?>
 
@@ -36,12 +43,13 @@ if(isset( $_GET["question".$_SESSION["q"]] )) {
     </h2>
     <h3>Pergunta #<?= $_SESSION["q"] + 1 ?></h3>
     <h4><?= $questionList[$_SESSION["q"]] ?></h4>
-    <form action="#" method="get">
+    <form action="#" method="post">
         <?php foreach($answerList[$_SESSION["q"]] as $a) : ?>
             <input type="radio"
                    name="question<?= $_SESSION["q"] ?>"
                    id="<?= $a ?>"
-                   value="<?= $a ?>">
+                   value="<?= $a ?>"
+                   required>
                    
             <label for="<?= $a ?>"><?= $a ?></label>
             <br><br>
