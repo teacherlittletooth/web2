@@ -1,0 +1,71 @@
+html {
+    background-image: url("fundo.jpg");
+    background-size: 100%;
+}
+
+h2 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+    -webkit-text-stroke: 1px black;
+    letter-spacing: 1px;
+    text-shadow: -3px -3px 3px black;
+}
+
+span {
+    color: rgb(63, 255, 73);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#question-box {
+    background-color: rgba(255,255,255,0.8);
+    width: 300px;
+    padding: 0px 20px 20px 20px;
+    border: 2px black solid;
+}
+
+h3 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: rgb(67, 122, 224);
+    padding: 20px;
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+    color: white;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 3px 3px 3px black;
+}
+
+a {
+    text-decoration: none;
+    padding: 15px;
+    background-color: white;
+    color: black;
+    border: 1px black solid;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h4, label {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    border-radius: 0px 10px 0px 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: 1s;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    border-radius: 10px 0px 10px 0px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: 1s;
+}
