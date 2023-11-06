@@ -38,7 +38,7 @@ $car3->setYear(2018);
 echo $car3->toString();
 
 //Fazendo uso do "get"
-echo "<>Vendo ".$car3->getBrand().
+echo "<br>Vendo ".$car3->getBrand().
     " ".$car3->getModel().
     ", motor ".number_format($car3->getEngine(), 1).
     ", único dono!";
