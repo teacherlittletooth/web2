@@ -1,0 +1,42 @@
+/* Seletor de tag */
+body {
+    background-color: rgb(162, 216, 160);
+}
+
+/* Seletor de id (#) */
+#login {
+    width: 300px;
+    background-color: #836FFF;
+    text-align: center;
+    padding: 20px;
+    /* Centralizar bloco */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Ícone para mostrar senha */
+#show-pass {
+    position: fixed;
+    right: 40px;
+    bottom: 146px;
+    cursor: pointer;
+    font-size: 18pt;
+}
+
+/* Seletor de class (.) */
+.login {
+    font-size: 16pt;
+    /* 5px top e bottom/ 10px left e right */
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* Seletor de propriedade html */
+input[type="submit"] {
+    width: 80%;
+    font-size: 16pt;
+    padding: 10px;
+}
