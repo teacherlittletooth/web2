@@ -2,33 +2,18 @@
 
 class User {
     //Atributos
-    private $userName;
-    private $userPass;
+    private $name;
+    private $pass;
 
-    public function __construct($name, $pass) {
-        $this->userName = $name;
-        $this->userPass = $pass;
+    //Método construtor
+    public function __construct($n, $p) {
+        $this->name = $n;
+        $this->pass = $p;
     }
 
-    public function setUserName($param) {
-        $this->userName = $param;
-    }
-
-    public function setUserPass($param) {
-        $this->userPass = $param;
-    }
-
-    public function getUserName() {
-        return $this->userName;
-    }
-
-    public function getUserPass() {
-        return $this->userPass;
-    }
-
-    //Validação de login
+    //Método para validar o login
     public function login() {
-        return ($this->userName == "admin"
-            && $this->userPass == "1234");
+        return ($this->name == "admin"
+            && $this->pass == "1234");
     }
 }

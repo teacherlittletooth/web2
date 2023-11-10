@@ -1,19 +1,20 @@
 <?php
-//Importando arquivos
-require "./const.php";
-require "./src/model/user.php";
+//Importação de arquivos
+include "./const.php";
+include "./src/model/user.php";
 
 if( isset($_POST["user"]) &&
-    isset($_POST["pass"])) {
-        //Cria um novo objeto da classe user
-        $newUser = new User(
+    isset($_POST["pass"]) ) {
+        //Criar um novo objeto da classe User
+        $user = new User(
             $_POST["user"],
             $_POST["pass"]
         );
-        if( $newUser->login() ) {
-            echo "<script> alert('Usuário autenticado!') </script>";
+        //Fazendo uso do método de verificação de login
+        if( $user->login() ) {
+            echo "<script> alert('AUTENTICADO! ✅') </script>";
         } else {
-            echo "<script> alert('Acesso negado!') </script>";
+            echo "<script> alert('ACESSO NEGADO! ❌') </script>";
         }
     }
 ?>
@@ -35,14 +36,20 @@ if( isset($_POST["user"]) &&
         <img src="./assets/img/logotipo.png" alt="Imagem" width="150">
         <h1>Login</h1>
         <form action="#" method="post">
-            <input type="text" name="user" id="user" class="login" placeholder="Usuário">
-            <br><br>
-            <input type="password" name="pass" id="pass" class="login" placeholder="Senha">
-            <div id="show-pass" title="Quer ver a senha?">🐵</div>
-            <br><br><hr><br>
+            <div id="login-fields">
+                <input type="text" name="user" id="user" class="login" placeholder="Usuário">
+                <br><br>
+                <input type="password" name="pass" id="pass" class="login" placeholder="Senha">
+                <br><br>
+                <a href="#">Esqueci a senha</a>
+            </div>
+            <br><hr><br>
             <input type="submit" value="Entrar 🚪">
+            <br>
         </form>
+        <a href="#">Cadastrar-se</a>
     </div>
+
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

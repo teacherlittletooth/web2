@@ -1,6 +1,6 @@
 <?php
 
-define("TITLE"          , "Access Control");
-define("DESCRIPTION"    , "Sistema para controle de acesso.");
-define("KEYWORDS"       , "php, html, css, javascript, sql, web2");
-define("AUTHOR"         , "Donini, Paulo A. R.");
+define("TITLE"      , "Access control");
+define("DESCRIPTION", "Sistema genérico para cadastro de usuários e controle de acessos");
+define("KEYWORDS"   , "login, senha, cadastro, php, sql, sistema, web");
+define("AUTHOR"     , "Paulo A. R. Donini");
