@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Diferentes tipos de entrada para formulário -->
+    <form action="#" method="get">
+        <!-- Texto em geral (text) -->
+        <input type="text" name="a" id="a">
+        <label for="a">
+            <<< Input de texto geral (text)
+        </label>
+
+        <br><br>
+
+        <!-- Propriedades adicionais: -->
+        <!-- placeholder: deixa um texto de marca d'água no campo -->
+        <!-- title: mostra um título quando o mouse fica sobre o campo -->
+        <!-- maxlength: permite um número máximo de caracteres -->
+        <!-- minlength: permite um número mínimo de caracteres -->
+        <input type="text" name="b" id="b" placeholder="Este é um placeholder" title="Isto é um título" maxlength="10" minlength="3">
+        <label for="b">
+            <<< Input de texto geral com placeholder, title, maxlength e minlength
+        </label>
+
+        <br><br>
+
+        <!-- Texto de senha (password) -->
+        <input type="password" name="c" id="c">
+        <label for="c">
+            <<< Esconde o texto com **** (password)
+        </label>
+
+        <br><br>
+
+        <!-- Validação para email -->
+        <input type="email" name="d" id="d" placeholder="nome@dominio">
+        <label for="d">
+            <<< Cria uma validação (de front) para email (email)
+        </label>
+
+        <br><br>
+
+        <!-- Validação por padrão ReGex (Regular Expression) -->
+        <input type="tel" name="e" id="e" placeholder="000.000.000-00" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}">
+        <label for="e">
+            <<< Cria uma validação (de front) de acordo com um padrão (pattern) especificado (tel)
+        </label>
+
+        <!-- Algumas Expressões regulares -->
+        <!-- [0-9] = aceita todos os números -->
+        <!-- [1-5] = aceita apenas o intervalo de 1 a 5 -->
+        <!-- [a-zA-Z] = aceita caracteres de A até Z, maiúsculos e minúsculos -->
+        <!-- {3} = espera que contenha 3 caracteres -->
+
+        <br><br>
+
+        <!-- Selecionar datas -->
+        <input type="date" name="f" id="f">
+        <label for="f">
+            <<< Permite selecionar uma data no calendário (date)
+        </label>
+
+        <br><br>
+
+        <!-- Seleciona data e hora -->
+        <input type="datetime-local" name="g" id="g">
+        <label for="g">
+            <<< Permite selecionar data no calendário e hora no relógio (datetime-local)
+        </label>
+
+        <br><br>
+
+        <!-- Entrada para números -->
+        <input type="number" name="h" id="h">
+        <label for="h">
+            <<< Permite apenas números (number)
+        </label>
+
+        <br><br>
+
+        <!-- Propriedades adicionais -->
+        <!-- step: fornece um número padrão de incremento e decremento -->
+        <!-- min e max: números máximo e mínimo permitidos -->
+        <input type="number" name="i" id="i" step="0.2" min="1" max="150">
+        <label for="i">
+            <<< Campo numérico com step, min e max
+        </label>
+
+        <br><br>
+
+        <!-- Radio button (1 entre vários) -->
+        <input type="radio" name="j" id="primeiro" value="primeiro" checked>
+        <label for="primeiro">Primeiro</label>
+        <br>
+        <input type="radio" name="j" id="segundo" value="segundo">
+        <label for="segundo">Segundo</label>
+        <br>
+        <input type="radio" name="j" id="terceiro" value="terceiro">
+        <label for="terceiro">Terceiro</label>
+
+        <!-- O atributo "name" precisa ser o mesmo -->
+        <!-- para que o comportamento seja correto. -->
+        <!-- O atributo "value" será o valor informado -->
+        <!-- ao enviar o formulário. -->
+        <!-- O atributo "checked" marca previamente um botão -->
+
+        <br><br>
+
+        <!-- Checkbox (vários entre vários) -->
+        <input type="checkbox" name="k" id="pri" value="pri" checked>
+        <label for="pri">Primeiro</label>
+        <br>
+        <input type="checkbox" name="k" id="seg" value="seg">
+        <label for="seg">Segundo</label>
+        <br>
+        <input type="checkbox" name="k" id="ter" value="ter">
+        <label for="ter">Terceiro</label>
+        <br>
+
+        <br><br>
+
+        <!-- Upload de arquivos -->
+        <input type="file" name="l" id="l">
+        <label for="l">
+            <<< Permite selecionar um arquivo para upload
+        </label>
+
+        <br><br>
+
+        <!-- Caixa de texto ajustável, para memorandos (textarea) -->
+        <textarea name="m" id="m" cols="30" rows="5">Texto padrão...</textarea>
+        <label for="m">
+            <<< Caixa para textos grandes (textarea)
+        </label>
+
+        <br><br>
+
+        <!-- Lista suspensa (select) -->
+        <select name="n" id="n" required>
+            <option value="">Selecione</option>
+            <option value="um">1 - Um</option>
+            <option value="dois">2 - Dois</option>
+            <option value="tres">3 - Três</option>
+        </select>
+
+        <br><br>
+
+        <!-- Seletor de cores -->
+        <input type="color" name="o" id="o">
+        <label for="o">
+            <<< Permite escolher uma cor (color)
+        </label>
+
+        <br><br>
+
+        <!-- Barra de medida -->
+        <input type="range" name="p" id="p">
+        <label for="p">
+            <<< Permite escolher um valor por meio de uma régua/barra (range)
+        </label>
+
+        <!-- Propriedades adicionais -->
+        <!-- max e min = definem os valores máximo e mínimo da régua -->
+        <!-- step = define de quanto em quanto os valores serão medidos -->
+        <!-- value = define o valor inicial da régua -->
+
+        <br><br>
+
+        <!-- Barra de medida -->
+        <input type="range" name="q" id="q" value="0" min="0" max="25" step="2.5">
+        <label for="q" id="qqq">0</label>
+
+        <br><br><hr>
+        <input type="submit" value="Enviar formulário">
+        <input type="reset" value="Apagar formulário">
+    </form>
+
+    <!-- AREA PARA O JAVASCRIPT -->
+    <script>
+        //Capturando o elemento com id "o"
+        var color = document.getElementById("o")
+        //Capturando o elemento com id "q"
+        var range = document.getElementById("q")
+        //Capturando o elemento com id "qqq"
+        var label = document.getElementById("qqq")
+
+        //Testando a captura de dados do elemento
+        color.addEventListener("change", ()=>{
+            console.log(color.value) //teste apresentado no console (F12)
+            //Alterando cor das letras da tela (o que estiver dentro do "body")
+            document.body.style.color = color.value
+        })
+
+        range.addEventListener("change", ()=>{
+            console.log(range.value)
+            document.body.style.fontSize = range.value + "pt"
+        })
+
+        range.addEventListener("input", ()=>{
+            label.innerHTML = range.value
+        })
+    </script>
+    <!-- ********************** -->
+</body>
+</html>
