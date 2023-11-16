@@ -137,7 +137,7 @@ if( isset($_GET["new-pass"]) ) {
             <tr> 
                 <!-- <td> representa uma célula da linha (coluna) -->
                 <td><h1>Perfil</h1></td> 
-                <td width="200px"></td>
+                <td></td>
                 <td></td>
                 
                 <td>
@@ -148,7 +148,7 @@ if( isset($_GET["new-pass"]) ) {
             </tr>
             <!-- Linha para subtítulo -->
             <tr>
-                <td colspan=5>
+                <td colspan=4>
                     <h3>Dados pessoais</h3>
                     <hr>
                 </td>
@@ -167,7 +167,6 @@ if( isset($_GET["new-pass"]) ) {
                 </td>
                 <td></td>
                 <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td>
@@ -182,10 +181,9 @@ if( isset($_GET["new-pass"]) ) {
                 </td>
                 <td></td>
                 <td></td>
-                <td></td>
             </tr>
             <tr>
-                <td colspan=5>
+                <td colspan=4>
                     <label for="desc">Descrição (bio)</label>
                     <br>
                     <textarea name="desc" id="desc" cols="100" rows="3" placeholder="Fale sobre você" maxlength="255"></textarea>
@@ -193,7 +191,7 @@ if( isset($_GET["new-pass"]) ) {
             </tr>
             <!-- Linha para subtítulo -->
             <tr>
-                <td colspan=5>
+                <td colspan=4>
                     <h3>Endereço</h3>
                     <hr>
                 </td>
@@ -215,7 +213,6 @@ if( isset($_GET["new-pass"]) ) {
                     <br>
                     <input type="number" name="number" id="number">
                 </td>
-                <td></td>
                 <td></td>
             </tr>
             <tr>
@@ -268,11 +265,10 @@ if( isset($_GET["new-pass"]) ) {
                         <option value="EX">Estrangeiro</option>
                     </select>
                 </td>
-                <td></td>
             </tr>
             <!-- Subtítulo -->
             <tr>
-                <td colspan=5>
+                <td colspan=4>
                     <h3>Sexo</h3>
                     <hr>
                 </td>
@@ -289,11 +285,10 @@ if( isset($_GET["new-pass"]) ) {
                 </td>
                 <td></td>
                 <td></td>
-                <td></td>
             </tr>
             <!-- Subtítulo -->
             <tr>
-                <td colspan=5>
+                <td colspan=4>
                     <h3>Contatos</h3>
                     <hr>
                 </td>
@@ -314,11 +309,10 @@ if( isset($_GET["new-pass"]) ) {
                     <input type="checkbox" name="notify" id="notify" value="yes">
                     <label for="notify">Desejo receber notificações</label>
                 </td>
-                <td></td>
             </tr>
             <!-- Linha para subtítulo -->
             <tr>
-                <td colspan=5>
+                <td colspan=4>
                     <h3>Senha</h3>
                     <hr>
                 </td>
@@ -341,11 +335,10 @@ if( isset($_GET["new-pass"]) ) {
                     <input type="password" name="confirm-pass" id="confirm-pass">
                 </td>
                 <td></td>
-                <td></td>
             </tr>
             <!-- Botões do formulário -->
             <tr>
-                <td colspan=5>
+                <td colspan=4>
                     <br>
                    <input type="submit" value="Salvar">
                    <input type="reset" value="Limpar">
