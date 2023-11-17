@@ -1,5 +1,9 @@
 <?php
-require "/xampp/htdocs/aula9_manha/const.php";
+require "/xampp/htdocs/aula10_noite/const.php";
+require "/xampp/htdocs/aula10_noite/src/model/user.php";
+
+//Inicializar a sessão neste arquivo
+session_start();
 
 //Recebendo os dados do formulário
 if( isset($_GET["photo"]) ) {
@@ -125,8 +129,8 @@ if( isset($_GET["new-pass"]) ) {
     <meta name="description" content="<?= DESCRIPTION ?>">
     <meta name="keywords" content="<?= KEYWORDS ?>">
     <meta name="author" content="<?= AUTHOR ?>">
-    <link rel="shortcut icon" href="/aula9_manha/assets/img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/aula9_manha/assets/css/style.css">
+    <link rel="shortcut icon" href="/aula10_noite/assets/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/aula10_noite/assets/css/style.css">
     <title><?= TITLE ?></title>
 </head>
 <body>
@@ -136,12 +140,11 @@ if( isset($_GET["new-pass"]) ) {
             <!-- <tr> representa uma linha da tabela -->
             <tr> 
                 <!-- <td> representa uma célula da linha (coluna) -->
-                <td><h1>Perfil</h1></td> 
-                <td></td>
+                <td colspan=2><h1>Bem vindo(a) <?= $_SESSION["user"]->getUser() ?></h1></td> 
                 <td></td>
                 
                 <td>
-                    <img src="/aula9_manha/assets/img/logotipo.png" alt="Imagem do perfil" width="100">
+                    <img src="<?= $_SESSION["user"]->getPhoto() ?>" alt="Imagem do perfil" width="100">
                     <br>
                     <input type="file" name="photo" id="photo">
                 </td>
@@ -158,7 +161,7 @@ if( isset($_GET["new-pass"]) ) {
                 <td>
                     <label for="user">Nome de usuário</label>
                     <br>
-                    <input type="text" name="user" id="user">
+                    <input type="text" name="user" id="user" value="<?= $_SESSION["user"]->getUser() ?>">
                 </td>
                 <td>
                     <label for="birth">Data de nascimento</label>
@@ -322,19 +325,19 @@ if( isset($_GET["new-pass"]) ) {
                 <td>
                     <label for="actual-pass">Senha atual</label>
                     <br>
-                    <input type="password" name="actual-pass" id="actual-pass">
+                    <input type="password" name="actual-pass" id="actual-pass" class="show-pass" value="<?= $_SESSION["user"]->getPass() ?>">
                 </td>
                 <td>
                     <label for="new-pass">Nova senha</label>
                     <br>
-                    <input type="password" name="new-pass" id="new-pass">
+                    <input type="password" name="new-pass" id="new-pass" class="show-pass">
                 </td>
                 <td>
                     <label for="confirm-pass">Cofirmação de senha</label>
                     <br>
-                    <input type="password" name="confirm-pass" id="confirm-pass">
+                    <input type="password" name="confirm-pass" id="confirm-pass" class="show-pass">
                 </td>
-                <td></td>
+                <td id="show-pass">😲</td>
             </tr>
             <!-- Botões do formulário -->
             <tr>
@@ -347,5 +350,25 @@ if( isset($_GET["new-pass"]) ) {
             <!-- ///////////////////// -->
         </table>
     </form>
+
+    <!-- Importando arquivo javascript -->
+    <script>
+        //Mostra/esconde senha na página de perfil (profile.php)
+        var btnShowPass = document.getElementById("show-pass")
+        var fieldsShowPass = document.getElementsByClassName("show-pass")
+        
+        btnShowPass.addEventListener("click", ()=>{
+            if(btnShowPass.innerHTML == "😲") {
+                fieldsShowPass.type = "text"
+                console.log(fieldsShowPass)
+                btnShowPass.innerHTML = "😑"
+            } else {
+                fieldsShowPass.type = "password"
+                console.log(fieldsShowPass)
+                btnShowPass.innerHTML = "😲"
+            }
+        })
+    </script>
+    <!-- ***************************** -->
 </body>
 </html>

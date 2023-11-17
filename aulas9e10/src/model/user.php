@@ -1,6 +1,6 @@
 <?php
 //Importando arquivo de banco de dados (lista)
-require "./database.php";
+require "/xampp/htdocs/aula10_noite/database.php";
 
 class User {
     //Atributos
@@ -22,7 +22,6 @@ class User {
     private $phone;
     private $email;
     private $notify;
-    private $actualPass;
     private $newPass;
 
     //Método construtor
@@ -33,20 +32,33 @@ class User {
 
     //Método para validar o login
     public function login() {
+        //Chamando a variável global para o escopo de função
         global $database;
+        //Criando variável booleana para controlar se o
+        //login deu certo ou não
         $check = false;
 
         foreach($database as $k => $v) {
             if($this->user == $v["user"]) {
+                //Só entra aqui se encontrar um nome de usuário válido
                 if($this->pass == $v["pass"]) {
+                    //Só entra aqui se a senha do usuario encontrado for
+                    //a mesma que a digitada
                     $check = true;
+
+                    //Preenchendo o objeto com os demais valores
+                    //já existentens no banco de dados
+                    $this->photo = $v["photo"];
                 }
             } 
         }
-
         return $check;
     }
-
+   
+    //Função para retornar o objeto inteiro
+    public function getObject() {
+        return $this;
+    }
 
     /**
      * Get the value of user
@@ -368,24 +380,6 @@ class User {
     public function setNotify($notify): self
     {
         $this->notify = $notify;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of actualPass
-     */
-    public function getActualPass()
-    {
-        return $this->actualPass;
-    }
-
-    /**
-     * Set the value of actualPass
-     */
-    public function setActualPass($actualPass): self
-    {
-        $this->actualPass = $actualPass;
 
         return $this;
     }

@@ -12,8 +12,16 @@ if( isset($_POST["user"]) &&
         );
         //Fazendo uso do método de verificação de login
         if( $user->login() ) {
+            //Caso o login retorne "true", inicializa-se o
+            //gerenciamento de sessões
+            session_start();
+            //é apresentado um alert javascript
             echo "<script> alert('AUTENTICADO! ✅') </script>";
-            header("Refresh: 0; URL = /aula9_manha/src/view/profile.php");
+            //é criada uma sessão com os dados do objeto retornado
+            $_SESSION["user"] = $user->getObject();
+            //e então somos redirecionados para a pagina de perfil
+            //var_dump($_SESSION["user"]);
+            header("Refresh: 0; URL = /aula10_noite/src/view/profile.php");
         } else {
             echo "<script> alert('ACESSO NEGADO! ❌') </script>";
         }
