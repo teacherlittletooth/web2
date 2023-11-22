@@ -1,10 +1,10 @@
 <?php
 
-namespace src\classes;
+//namespace src\classes;
 
-use Exception;
-use PDO;
-use PDOException;
+// use Exception;
+// use PDO;
+// use PDOException;
 
 class Database {
     
@@ -15,6 +15,7 @@ class Database {
        $this->connection = new PDO(
            'mysql:'.
            'host='.MYSQL_SERVER.';'.
+           'port='.MYSQL_PORT.';'.
            'dbname='.MYSQL_DATABASE.';'.
            'charset='.MYSQL_CHARSET,
            MYSQL_USER,
@@ -35,8 +36,9 @@ class Database {
    {
 
         if(!preg_match('/^SELECT/i', $sql)){
-            $erro = new Exception();
-            echo "<u>SQL error (SELECT):</u><br>".$erro;
+            //$erro = new Exception();
+            echo "<u>SQL error (SELECT):</u><br>";
+            //.$erro;
             //die('*** Não é uma instrução SELECT ***');
         }
 
@@ -54,7 +56,7 @@ class Database {
                 $myExecute->execute();
                 $result = $myExecute->fetchAll(PDO::FETCH_CLASS);
             }
-        } catch (PDOException $error) {
+        } catch (Exception $error) {
             var_dump($error);
             return false;
         }
@@ -69,8 +71,9 @@ class Database {
    {
 
         if(!preg_match('/^INSERT/i', $sql)){
-            $erro = new Exception();
-            echo "<u>SQL error (INSERT):</u><br>".$erro;
+            //$erro = new Exception();
+            echo "<u>SQL error (INSERT):</u><br>";
+            //.$erro;
             //die('*** Não é uma instrução INSERT ***');
         }
 
@@ -84,7 +87,7 @@ class Database {
                 $myExecute = $this->connection->prepare($sql);
                 $result = $myExecute->execute();
             }
-        } catch (PDOException $error) {
+        } catch (Exception $error) {
             var_dump($error);
             return false;
         }
@@ -99,8 +102,9 @@ class Database {
    {
 
         if(!preg_match('/^UPDATE/i', $sql)){
-            $erro = new Exception();
-            echo "<u>SQL error (UPDATE):</u><br>".$erro;
+            //$erro = new Exception();
+            echo "<u>SQL error (UPDATE):</u><br>";
+            //.$erro;
             //die('*** Não é uma instrução UPDATE ***');
         }
 
@@ -114,7 +118,7 @@ class Database {
                 $myExecute = $this->connection->prepare($sql);
                 $result = $myExecute->execute();
             }
-        } catch (PDOException $error) {
+        } catch (Exception $error) {
             var_dump($error);
             return false;
         }
@@ -129,8 +133,9 @@ class Database {
    {
 
         if(!preg_match('/^DELETE/i', $sql)){
-            $erro = new Exception();
-            echo "<u>SQL error (DELETE):</u><br>".$erro;
+            //$erro = new Exception();
+            echo "<u>SQL error (DELETE):</u><br>";
+            //.$erro;
             //die('*** Não é uma instrução DELETE ***');
         }
 
@@ -144,7 +149,7 @@ class Database {
                 $myExecute = $this->connection->prepare($sql);
                 $myExecute->execute();
             }
-        } catch (PDOException $error) {
+        } catch (Exception $error) {
             var_dump($error);
             return false;
         }
@@ -152,13 +157,14 @@ class Database {
         $this->disconnect();
    }
    
-   ////////////////////////////////////////////////////****GENÉRICA****//////////
+   /////////GENÉRICA//////////
    public function statement($sql, $parameters = null)
    {
 
         if(preg_match('/^(SELECT|INSERT|UPDATE|DELETE)/i', $sql)){
-            $erro = new Exception();
-            echo "<u>SQL error: INSTRUÇÃO INVÁLIDA</u><br>".$erro;
+            //$erro = new Exception();
+            echo "<u>SQL error: INSTRUÇÃO INVÁLIDA</u><br>";
+            //.$erro;
             //die('*** Não é uma instrução DELETE ***');
         }
 
@@ -172,11 +178,12 @@ class Database {
                 $myExecute = $this->connection->prepare($sql);
                 $myExecute->execute();
             }
-        } catch (PDOException $error) {
+        } catch (Exception $error) {
             var_dump($error);
             return false;
         }
 
         $this->disconnect();
    }
+
 }
