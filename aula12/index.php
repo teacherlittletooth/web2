@@ -1,8 +1,30 @@
 <?php
 //Importação do cabeçalho
-include "/xampp/htdocs/aula12_tarde/src/controller/header.php";
+include "/xampp/htdocs/aula12_noite/src/controller/header.php";
+
+//Importação dos arquivos que contém as classes User e Database
 include MODEL . "/user.php";
 include MODEL . "/database.php";
+
+//Importando arquivo que verifica se a sessão está "ligada".
+//Caso esteja, redireciona o usuário para a página de perfil
+include CONTROLLER . "/session_on.php";
+
+//Criando objeto da classe Database
+$db = new Database();
+
+//Selecionar todos os registros da tabela
+//users
+$listUsers = $db->select(
+    "SELECT * FROM users"
+);
+
+//Mostrar os resultados
+foreach($listUsers as $u) {
+    echo $u->user_cod."<br>";
+    echo $u->user_name."<br>";
+    echo $u->user_pass."<hr>";
+}
 
 if( isset($_POST["user"]) &&
     isset($_POST["pass"]) ) {
@@ -25,11 +47,7 @@ if( isset($_POST["user"]) &&
         }
     }
 
-    $db = new Database();
     
-    var_dump(
-        $db->select( "SELECT * FROM users" )
-    );
 ?>
 
 
@@ -53,4 +71,4 @@ if( isset($_POST["user"]) &&
 
 <?php
 //Importação do rodapé
-include "/xampp/htdocs/aula12_tarde/src/controller/footer.php";
+include "/xampp/htdocs/aula12_noite/src/controller/footer.php";

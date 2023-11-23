@@ -1,8 +1,16 @@
 <?php
 //Importação do cabeçalho
-include "/xampp/htdocs/aula12_tarde/src/controller/header.php";
+include "/xampp/htdocs/aula12_noite/src/controller/header.php";
 
+//Importação dos arquivos que contém as classes User e Database
 include MODEL . "/user.php";
+include MODEL . "/database.php";
+
+//Importando arquivo que verifica se a sessão está "desligada".
+//Caso esteja, redireciona o usuário para a página de login
+include CONTROLLER . "/session_off.php";
+
+session_reset();
 
 //Recebendo os dados do formulário
 if( isset($_GET["photo"]) ) {
@@ -119,6 +127,8 @@ if( isset($_GET["new-pass"]) ) {
     $newPass = null;
 }
 ?>
+
+    <button type="button" onclick="window.location.href='<?= ROOT ?>/src/controller/logout.php'">Finalizar sessão 🚪</button>
 
     <form action="#" method="get">
         <!-- Tabela para organizar o conteúdo -->
@@ -339,4 +349,4 @@ if( isset($_GET["new-pass"]) ) {
 
 <?php
 //Importação do rodapé
-include "/xampp/htdocs/aula12_tarde/src/controller/footer.php";
+include "/xampp/htdocs/aula12_noite/src/controller/footer.php";

@@ -32,30 +32,26 @@ class User {
 
     //Método para validar o login
     public function login() {
-        //Chamando a variável global para o escopo de função
-        global $database;
+        //Criando objeto da classe Database
+        $db = new Database();
 
-        //Caso ainda não tenha sido inicializada a sessão
-        //obtém-se os dados da lista original
-        if( $_SESSION["database"] == null ) {
-            $_SESSION["database"] = $database;
-        }
+        //Selecionar todos os registros da tabela
+        //users
+        $listUsers = $db->select(
+            "SELECT * FROM users"
+        );
         
         //Criando variável booleana para controlar se o
         //login deu certo ou não
         $check = false;
 
-        foreach($_SESSION["database"] as $k => $v) {
-            if($this->user == $v["user"]) {
+        foreach($listUsers as $u) {
+            if($this->user == $u->user_name) {
                 //Só entra aqui se encontrar um nome de usuário válido
-                if($this->pass == $v["pass"]) {
+                if(sha1($this->pass) == $u->user_pass) {
                     //Só entra aqui se a senha do usuario encontrado for
                     //a mesma que a digitada
                     $check = true;
-
-                    //Preenchendo o objeto com os demais valores
-                    //já existentens no banco de dados
-                    $this->photo = $v["photo"];
                 }
             } 
         }

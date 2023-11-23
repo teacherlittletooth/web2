@@ -1,6 +1,6 @@
 <?php
 //Importando as constantes
-include "/xampp/htdocs/aula12_tarde/const.php";
+include "/xampp/htdocs/aula12_noite/const.php";
 
 //Inicializando sessão
 session_start();

@@ -1,8 +1,8 @@
 <?php
 //Importação do cabeçalho
-include "/xampp/htdocs/aula12_tarde/src/controller/header.php";
-
+include "/xampp/htdocs/aula12_noite/src/controller/header.php";
 include MODEL . "/user.php";
+include MODEL . "/database.php";
 
 //Variável para validar se os dados
 //foram enviados
@@ -30,17 +30,17 @@ if( isset($_POST["pass"]) ) {
 }
 
 if($count >= 2) {
-    //Guardar na lista
-    array_push(
-        $database,
-        [
-            "user" => $user,
-            "pass" => $pass,
-            "email" => $email
-        ]
+    //Instanciando classe Database
+    $db = new Database();
+
+    //Criptografando senha
+    $passCripto = sha1($pass);
+
+    //Chamando método para salvar no BD
+    $db->insert(
+        "INSERT INTO users(user_name, user_pass)
+        VALUES ('$user', '$passCripto')"
     );
-    //Jogando lista para variável de sessão
-    $_SESSION["database"] = $database;
 
     //Mensagem de sucesso
     echo "<script> alert('Cadastro realizado! ✅') </script>";
@@ -75,4 +75,4 @@ if($count >= 2) {
 
 <?php
 //Importação do rodapé
-include "/xampp/htdocs/aula12_tarde/src/controller/footer.php";
+include "/xampp/htdocs/aula12_noite/src/controller/footer.php";
