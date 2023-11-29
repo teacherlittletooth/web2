@@ -1,6 +1,6 @@
 <?php
 //Importação do cabeçalho
-include "/xampp/htdocs/aula13_manha/src/controller/header.php";
+include "/xampp/htdocs/aula13_noite/src/controller/header.php";
 
 //Importação dos arquivos que contém as classes User e Database
 include MODEL . "/user.php";
@@ -12,7 +12,10 @@ include CONTROLLER . "/session_off.php";
 
 session_reset();
 
-var_dump($_SESSION["user"]);
+//Lançando dados da $_SESSION para uma variável
+//simples, apenas para facilitar nossa vida
+$u = $_SESSION["user"];
+var_dump( $u );
 
 //Recebendo os dados do formulário
 if( isset($_GET["photo"]) ) {
@@ -128,21 +131,71 @@ if( isset($_GET["new-pass"]) ) {
 } else {
     $newPass = null;
 }
+
+//Função para salvar as atualizações
+function updateProfile() {
+    //Trazendo as variáveis de fora
+    global $photo, $user, $birth, $firstName, $lastName,
+    $desc, $cep, $address, $number, $complement, $neighborhood,
+    $city, $state, $sex, $phone, $email, $notify,
+    $actualPass, $newPass, $u;
+    
+    //Pegando o cod do usuário
+    $cod = $u->getCod();
+
+    //Instanciando a classe Database
+    $db = new Database();
+
+    //Fazendo uso do método update da classe
+    $db->update(
+        "UPDATE users SET
+        user_cod            = $cod,
+        user_name           ='$user',
+        user_pass           ='$actualPass',
+        user_photo          ='$photo',
+        user_birth          ='$birth',
+        user_first_name     ='$firstName',
+        user_last_name      ='$lastName',
+        user_desc           ='$desc',
+        user_cep            ='$cep',
+        user_address        ='$address',
+        user_number         ='$number',
+        user_complement     ='$complement',
+        user_neighborhood   ='$neighborhood',
+        user_city           ='$city',
+        user_state          ='$state',
+        user_sex            ='$sex',
+        user_phone          ='$phone',
+        user_email          ='$email',
+        user_notify         = $notify,
+        user_new_pass       ='$newPass'
+        WHERE user_cod      = $cod"
+    );
+}
 ?>
+
+<script>
+    function callUpdate() {
+       if( confirm("Deseja atualizar os dados?") ) {
+           <?= updateProfile() ?>
+            alert("Dados atualizados!")
+       }
+    }
+</script>
 
     <button type="button" onclick="window.location.href='<?= ROOT ?>/src/controller/logout.php'">Finalizar sessão 🚪</button>
 
-    <form action="#" method="get">
+    <form action="#" method="get" onsubmit="return callUpdate()">
         <!-- Tabela para organizar o conteúdo -->
         <table>
             <!-- <tr> representa uma linha da tabela -->
             <tr> 
                 <!-- <td> representa uma célula da linha (coluna) -->
-                <td colspan=2><h1>Bem vindo(a) <?= $_SESSION["user"]->getUser() ?></h1></td> 
+                <td colspan=2><h1>Bem vindo(a) <?= $u->getUser() ?></h1></td> 
                 <td></td>
                 
                 <td>
-                    <img src="<?= $_SESSION["user"]->getPhoto() ?>" alt="Imagem do perfil" width="100">
+                    <img src="<?= $u->getPhoto() ?>" alt="Imagem do perfil" width="100">
                     <br>
                     <input type="file" name="photo" id="photo">
                 </td>
@@ -159,12 +212,12 @@ if( isset($_GET["new-pass"]) ) {
                 <td>
                     <label for="user">Nome de usuário</label>
                     <br>
-                    <input type="text" name="user" id="user" value="<?= $_SESSION["user"]->getUser() ?>">
+                    <input type="text" name="user" id="user" value="<?= $u->getUser() ?>">
                 </td>
                 <td>
                     <label for="birth">Data de nascimento</label>
                     <br>
-                    <input type="date" name="birth" id="birth">
+                    <input type="date" name="birth" id="birth" value="<?= $u->getBirth() ?>">
                 </td>
                 <td></td>
                 <td></td>
@@ -173,12 +226,12 @@ if( isset($_GET["new-pass"]) ) {
                 <td>
                     <label for="first-name">Nome</label>
                     <br>
-                    <input type="text" name="first-name" id="first-name">
+                    <input type="text" name="first-name" id="first-name" value="<?= $u->getFirstName() ?>">
                 </td>
                 <td>
                     <label for="last-name">Sobrenome</label>
                     <br>
-                    <input type="text" name="last-name" id="last-name">
+                    <input type="text" name="last-name" id="last-name" value="<?= $u->getLastName() ?>">
                 </td>
                 <td></td>
                 <td></td>
@@ -187,7 +240,7 @@ if( isset($_GET["new-pass"]) ) {
                 <td colspan=4>
                     <label for="desc">Descrição (bio)</label>
                     <br>
-                    <textarea name="desc" id="desc" cols="100" rows="3" placeholder="Fale sobre você" maxlength="255"></textarea>
+                    <textarea name="desc" id="desc" cols="100" rows="3" placeholder="Fale sobre você" maxlength="255"><?= $u->getDesc() ?></textarea>
                 </td>
             </tr>
             <!-- Linha para subtítulo -->
@@ -202,17 +255,17 @@ if( isset($_GET["new-pass"]) ) {
                 <td>
                     <label for="cep">Cep</label>
                     <br>
-                    <input type="number" name="cep" id="cep">
+                    <input type="number" name="cep" id="cep" value="<?= $u->getCep() ?>">
                 </td>
                 <td>
                     <label for="address">Endereço</label>
                     <br>
-                    <input type="text" name="address" id="address">
+                    <input type="text" name="address" id="address" value="<?= $u->getAddress() ?>">
                 </td>
                 <td>
                     <label for="number">Número</label>
                     <br>
-                    <input type="number" name="number" id="number">
+                    <input type="number" name="number" id="number" value="<?= $u->getNumber() ?>">
                 </td>
                 <td></td>
             </tr>
@@ -220,22 +273,37 @@ if( isset($_GET["new-pass"]) ) {
                 <td>
                     <label for="complement">Complemento</label>
                     <br>
-                    <input type="text" name="complement" id="complement">
+                    <input type="text" name="complement" id="complement" value="<?= $u->getComplement() ?>">
                 </td>
                 <td>
                     <label for="neighborhood">Bairro</label>
                     <br>
-                    <input type="text" name="neighborhood" id="neighborhood">
+                    <input type="text" name="neighborhood" id="neighborhood" value="<?= $u->getNeighborhood() ?>">
                 </td>
                 <td>
                     <label for="city">Cidade</label>
                     <br>
-                    <input type="text" name="city" id="city">
+                    <input type="text" name="city" id="city" value="<?= $u->getCity() ?>">
                 </td>
                 <td>
                     <label for="state">Estado</label>
                     <br>
+
+                    <?php
+                    //Lançando dado do estado para variável
+                    $uf = $u->getState();
+                    ?>
+
                     <select id="state" name="state">
+
+                    <?=
+                    //Verificando se existe dados salvos no campo
+                    //estado. Caso seja nulo, aparecerá "Selecione"
+                        ($uf == null)
+                        ? "<option value=''>Selecione</option>"
+                        : "<option value='$uf'>$uf</option>"
+                    ?>
+
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
                         <option value="AP">Amapá</option>
@@ -277,11 +345,11 @@ if( isset($_GET["new-pass"]) ) {
             <!-- ///////// -->
             <tr>
                 <td>
-                    <input type="radio" name="sex" id="male" value="male">
+                    <input type="radio" name="sex" id="male" value="male" <?= ($u->getSex()=="male") ? "checked" : "" ?>>
                     <label for="male">Masculino</label>
                 </td>
                 <td>
-                    <input type="radio" name="sex" id="female" value="female">
+                    <input type="radio" name="sex" id="female" value="female" <?= ($u->getSex()=="female") ? "checked" : "" ?>>
                     <label for="female">Feminino</label>
                 </td>
                 <td></td>
@@ -299,15 +367,15 @@ if( isset($_GET["new-pass"]) ) {
                 <td>
                     <label for="phone">Telefone</label>
                     <br>
-                    <input type="tel" name="phone" id="phone" pattern="[0-9]{2}-[0-9]{9}">
+                    <input type="tel" name="phone" id="phone" pattern="[0-9]{2}-[0-9]{9}" value="<?= $u->getPhone() ?>">
                 </td>
                 <td>
                     <label for="email">Email</label>
                     <br>
-                    <input type="email" name="email" id="email">
+                    <input type="email" name="email" id="email" value="<?= $u->getEmail() ?>">
                 </td>
                 <td colspan=2>
-                    <input type="checkbox" name="notify" id="notify" value="yes">
+                    <input type="checkbox" name="notify" id="notify" <?= ($u->getNotify()==1) ? "checked" : "" ?>>
                     <label for="notify">Desejo receber notificações</label>
                 </td>
             </tr>
@@ -323,7 +391,7 @@ if( isset($_GET["new-pass"]) ) {
                 <td>
                     <label for="actual-pass">Senha atual</label>
                     <br>
-                    <input type="password" name="actual-pass" id="actual-pass" class="show-pass" value="<?= $_SESSION["user"]->getPass() ?>">
+                    <input type="password" name="actual-pass" id="actual-pass" class="show-pass" value="<?= $u->getPass() ?>">
                 </td>
                 <td>
                     <label for="new-pass">Nova senha</label>
@@ -351,4 +419,4 @@ if( isset($_GET["new-pass"]) ) {
 
 <?php
 //Importação do rodapé
-include "/xampp/htdocs/aula13_manha/src/controller/footer.php";
+include "/xampp/htdocs/aula13_noite/src/controller/footer.php";

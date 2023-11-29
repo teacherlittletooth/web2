@@ -53,7 +53,7 @@ class User {
                     //a mesma que a digitada
                     $check = true;
 
-                    //Preencher todos os demais atributos
+                    //Preenchendo os demais atributos do objeto
                     $this->cod = $u->user_cod;
                     $this->photo = $u->user_photo;
                     $this->birth = $u->user_birth;
@@ -82,16 +82,6 @@ class User {
     //Função para retornar o objeto inteiro
     public function getObject() {
         return $this;
-    }
-
-    //Get do cod
-    public function getCod() {
-        return $this->cod;
-    }
-
-    //Get do status
-    public function getStatus() {
-        return $this->status;
     }
 
     /**
@@ -432,6 +422,42 @@ class User {
     public function setNewPass($newPass): self
     {
         $this->newPass = $newPass;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of status
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set the value of status
+     */
+    public function setStatus($status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cod
+     */
+    public function getCod()
+    {
+        return $this->cod;
+    }
+
+    /**
+     * Set the value of cod
+     */
+    public function setCod($cod): self
+    {
+        $this->cod = $cod;
 
         return $this;
     }
