@@ -72,7 +72,6 @@ INSERT INTO `users` (`user_cod`, `user_name`, `user_pass`, `user_photo`, `user_b
 -- Índices para tabela `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_cod`),
   ADD UNIQUE KEY `user_email` (`user_email`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
