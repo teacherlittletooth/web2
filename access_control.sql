@@ -32,7 +32,7 @@ USE access_control;
 --
 
 CREATE TABLE `users` (
-  `user_cod` int(11) NOT NULL,
+  `user_cod` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(20) NOT NULL,
   `user_pass` text NOT NULL,
   `user_photo` text DEFAULT NULL,
@@ -74,17 +74,6 @@ INSERT INTO `users` (`user_cod`, `user_name`, `user_pass`, `user_photo`, `user_b
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_cod`),
   ADD UNIQUE KEY `user_email` (`user_email`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `users`
---
-ALTER TABLE `users`
-  MODIFY `user_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
