@@ -32,22 +32,22 @@ if($_FILES["photo"]["name"] != "") {
 
     $check = getimagesize($_FILES["photo"]["tmp_name"]);
     if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
+        echo "Arquivo enviado é uma imagem - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        echo "File is not an image.";
+        echo "Arquivo enviado NÃO É uma imagem.";
         $uploadOk = 0;
     }
 
     //Verifica se o arquivo já existe
     if (file_exists($target_file)) {
-        echo "Desculpe, arquivo já existe.";
+        echo "Desculpe, o arquivo já existe.";
         $uploadOk = 0;
     }
 
     //Verifica tamanho do arquivo
     if ($_FILES["photo"]["size"] > 2100000) {
-        echo "Arquivo muito grande! (Limite é 2MB).";
+        echo "Arquivo muito grande! (Limite 2MB).";
         $uploadOk = 0;
     }
 
