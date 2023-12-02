@@ -30,7 +30,7 @@ $u = $_SESSION["user"];
 
     <button type="button" onclick="window.location.href='<?= ROOT ?>/src/controller/logout.php'">Finalizar sessão 🚪</button>
 
-    <form action="<?= ROOT ?>/src/controller/update_profile.php" method="get" onsubmit="return callUpdate()">
+    <form action="<?= ROOT ?>/src/controller/update_profile.php" method="get" onsubmit="return callUpdate()" enctype="multipart/form-data">
         <!-- Tabela para organizar o conteúdo -->
         <table>
             <!-- <tr> representa uma linha da tabela -->
@@ -249,7 +249,7 @@ $u = $_SESSION["user"];
             <tr>
                 <td colspan=4>
                     <br>
-                   <input type="submit" value="Salvar">
+                   <input type="submit" value="Salvar" name="submit">
                    <input type="reset" value="Limpar">
                 </td>
             </tr>
