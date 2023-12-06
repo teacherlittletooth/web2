@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Tempo de geração: 30-Nov-2023 às 21:39
+-- Tempo de geração: 06-Dez-2023 às 01:38
 -- Versão do servidor: 10.3.15-MariaDB
 -- versão do PHP: 7.3.6
 
@@ -22,9 +22,6 @@ SET time_zone = "+00:00";
 -- Banco de dados: `access_control`
 --
 
-CREATE DATABASE access_control;
-
-USE access_control;
 -- --------------------------------------------------------
 
 --
@@ -32,7 +29,7 @@ USE access_control;
 --
 
 CREATE TABLE `users` (
-  `user_cod` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `user_cod` int(11) NOT NULL,
   `user_name` varchar(20) NOT NULL,
   `user_pass` text NOT NULL,
   `user_photo` text DEFAULT NULL,
@@ -52,14 +49,38 @@ CREATE TABLE `users` (
   `user_email` varchar(40) DEFAULT NULL,
   `user_notify` tinyint(1) DEFAULT NULL,
   `user_new_pass` text DEFAULT NULL,
-  `user_status` tinyint(1) DEFAULT NULL
+  `user_status` tinyint(1) DEFAULT NULL,
+  `user_profile` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`user_cod`, `user_name`, `user_pass`, `user_photo`, `user_birth`, `user_first_name`, `user_last_name`, `user_desc`, `user_cep`, `user_address`, `user_number`, `user_complement`, `user_neighborhood`, `user_city`, `user_state`, `user_sex`, `user_phone`, `user_email`, `user_notify`, `user_new_pass`, `user_status`, `user_profile`) VALUES
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+
+--
+-- Índices para tabelas despejadas
+--
 
 --
 -- Índices para tabela `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_cod`),
   ADD UNIQUE KEY `user_email` (`user_email`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
