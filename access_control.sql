@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 -- Banco de dados: `access_control`
 --
 CREATE DATABASE access_control;
-USE DATABASE access_control;
+USE access_control;
 -- --------------------------------------------------------
 
 --
